@@ -1,0 +1,72 @@
+﻿<Window x:Class="Editor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Editor"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="55*"/>
+            <ColumnDefinition Width="45*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Column="0" Name="dgUsers" AutoGenerateColumns="False" ItemsSource="{Binding Users}" MouseLeftButtonUp="DgUsers_MouseLeftButtonUp">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Birthday" Binding="{Binding Birthday}" />
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <DockPanel Background="GhostWhite" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown">
+                        <Image DockPanel.Dock="Left" Source="{Binding SagImageUrl}" Margin="10" />
+                        <Image DockPanel.Dock="Left" Source="{Binding AxImageUrl}" Margin="10" />
+                        <Image DockPanel.Dock="Left" Source="{Binding CorImageUrl}" Margin="10" />
+                        <Grid Margin="0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="ID: " FontWeight="Bold" />
+                            <TextBlock Text="{Binding Id}" Grid.Column="1" />
+                            <TextBlock Text="Name: " FontWeight="Bold" Grid.Row="1" />
+                            <TextBlock Text="{Binding Name}" Grid.Column="1" Grid.Row="1" />
+                            <TextBlock Text="Birthday: " FontWeight="Bold" Grid.Row="2" />
+                            <TextBlock Text="{Binding Birthday, StringFormat=d}" Grid.Column="1" Grid.Row="2" />
+
+                        </Grid>
+                    </DockPanel>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
+        <StackPanel Background="AliceBlue" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1">
+            <Image Name="SelectedImage" Margin="10" />
+        </StackPanel>
+    </Grid>
+    <!--<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="80*"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="Draw" Grid.Row="0" Grid.Column="0">
+            <StackPanel>
+                <CheckBox Content="  X" Command="{Binding YourCommand}" CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}" />
+                <CheckBox Content="  +" Command="{Binding YourCommand}" CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}" />
+            </StackPanel>
+        </GroupBox>
+        <StackPanel Grid.Row="1" Grid.Column="0"></StackPanel>
+        <ContentPresenter Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"></ContentPresenter>
+        <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"></StackPanel>
+    </Grid>-->
+</Window>
